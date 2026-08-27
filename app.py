@@ -93,9 +93,22 @@ web = Flask(__name__)
 @web.route("/")
 def home():
     return "FRIDAY is online."
-
 if __name__ == "__main__":
     Thread(target=run_bot, daemon=True).start()
 
     port = int(os.environ.get("PORT", 10000))
     web.run(host="0.0.0.0", port=port)
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    web.run(
+        host="0.0.0.0",
+        port=port,
+        use_reloader=False
+    )
+
+if __name__ == "__main__":
+    # Run Render's web server in the background
+    Thread(target=run_web, daemon=True).start()
+
+    # Telegram MUST run on the main thread
+    run_bot()
