@@ -74,9 +74,9 @@ Respond naturally to the latest message directed at you.
 
         chat_history[chat_id].append(f"FRIDAY: {answer}")
 
-    except Exception as e:
-    print(f"OPENAI ERROR: {repr(e)}", flush=True)
-    await message.reply_text("Something went wrong on my end.")
+     except Exception as e:
+        print(f"OPENAI ERROR: {repr(e)}", flush=True)
+        await message.reply_text("Something went wrong on my end.")
 
 def run_bot():
     application = Application.builder().token(TELEGRAM_TOKEN).build()
